@@ -4,8 +4,8 @@ version: 0.0.2
 
 email: yurevich.pavel@gmail.com
 ```
-This tool is a light-weight graphics user interface for **"Javascript image manipulation tools"** aka Jimp (https://www.npmjs.com/package/jimp).
-It consists of two parts:
+This tool is a light-weight user graphics interface for **"Javascript image manipulation tools"** aka Jimp (https://www.npmjs.com/package/jimp).
+Jugi consists of two parts:
 
 1. Client part for web-browser (jugi-client.js). Written in clear JavaScript.
 2. Server part for node.js (jugi-server).js. Written for use with framework express.js.
@@ -14,7 +14,7 @@ But you can use this UI with another server-side image processing tools - all yo
 the handlers (cropHandler & resizeHandler). The default handlers use GET requests to the server.
 
 
-## Client side jugi API:
+## Client side Jugi API:
 
 **jugi.init()**
 
@@ -94,13 +94,13 @@ Object 'data' contains the following properties:
 
 
 
-## Server side jugi API:
+## Server side Jugi API:
 
-Server side part of JUGI written for node.js framework express.js.
+Server side part of Jugi written for node.js framework express.js.
 
 **jugi.secure (userHandler())**
 
-It is used when you need to limit user access to edit images on your server. In a handler function you can identify the user and return "boolean true" if the user is authorized. The "boolean false" forbids user access to a server part of jugi. If the handler is not specified, all users have access.
+It is used when you need to limit user access to edit images on your server. In a handler function you can identify the user and return "boolean true" if the user is authorized. The "boolean false" forbids user access to a server part of Jugi. If the handler is not specified, all users have access.
 
 **jugi.processor (req, res, next)**
 
