@@ -1,0 +1,28 @@
+{
+  "name": "jimp-ui",
+  "version": "0.0.3",
+  "description": "This tool is light-weight web UI for \"Javascript image manipulatuon tools\" aka Jimp.",
+  "main": "jugi-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "jimp": "^0.2.28"
+  },
+  "keywords": [
+    "jimp",
+    "ui",
+    "gui",
+    "interface",
+    "web interface",
+    "graphic interface",
+    "user interface",
+    "image"
+  ],
+  "_npmUser": {
+    "name": "yoda49",
+    "email": "upv@bk.ru"
+  },
+  "author": "Yurevich Pavel aka yoda49",
+  "license": "MIT"
+}

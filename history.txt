@@ -1,0 +1,18 @@
+JUGI. Jimp Graphics User Interface.
+
+###########################
+Version: 0.0.1 [11.07.2017]
+########################### 
+
+* Two methods to load the picture in the interface.
+* Module can load local (server) or web images.
+* Crop instrument.
+* Resize instrument (include fit to width or height).
+* Possibility to override resize & crop handlers.
+* Initial options for setup client-side part.
+* Secure handler in server-side part.
+
+###########################
+Version: 0.0.2 [12.07.2017]
+########################### 
+* Fix some bugs.
