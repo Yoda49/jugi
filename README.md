@@ -1,6 +1,6 @@
 # Jugi. Jimp Graphics User Interface.
 ```
-version: 0.0.2
+version: 0.0.5
 
 email: yurevich.pavel@gmail.com
 ```
