@@ -101,9 +101,11 @@ Object 'data' contains the following properties:
 
 Server side part of Jugi written for node.js framework express.js.
 
-**jugi.secure (userHandler())**
+**jugi.secure (userHandler)**
 
-It is used when you need to limit user access to edit images on your server. In a handler function you can identify the user and return "boolean true" if the user is authorized. The "boolean false" forbids user access to a server part of Jugi. If the handler is not specified, all users have access.
+It is used when you need to limit user access to edit images on your server. In a user handler function you can identify the user and return "boolean true" if the user is authorized. The "boolean false" forbids user access to a server part of Jugi. If the handler is not specified, all users have access. 
+
+Jugi.secure passes two parameters to user handler: req & res (standart objects of express.js).
 
 **jugi.processor (req, res, next)**
 
@@ -113,7 +115,7 @@ Using:
 ```js
 var jugi = require("jugi");
 
-jugi.secure(userHandler());
+jugi.secure(userHandler);
 app.use(jugi.processor);
 ```
 or, if you don't need user identification:
