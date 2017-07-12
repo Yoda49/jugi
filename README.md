@@ -12,7 +12,7 @@ Jugi consists of two parts:
 
 But you can use this UI with another server-side image processing tools - all you need is just to override 
 the handlers (cropHandler & resizeHandler). The default handlers use GET requests to the server.
-
+![jugi.js](http://isee.by/images/kim.jpg)
 
 ## Client side Jugi API:
 
@@ -173,5 +173,5 @@ in this case all images will be saved in c:/user/node/server/public/images.
 Server side: npm install jugi --save
 Client side: just copy jugi.js to you project javascript directory, add 2 div`s to your HTML.
 
-![jugi.js](http://isee.by/images/kim.jpg)
+
 
