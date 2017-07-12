@@ -19,7 +19,7 @@ the handlers (cropHandler & resizeHandler). The default handlers use GET request
 
 ### jugi.init()
 
-Do initialization with default config:
+Make initialization with default config:
 ```
 1.  cropFrameMinWidth  = 100
 2.  cropFrameMinHeight = 100
@@ -35,7 +35,7 @@ Do initialization with default config:
 
 ### jugi.init(config)
 
-Do initialization with user config. The config must be an object with the next possible properties:
+Make initialization with user config. The config must be an object with the next possible properties:
 ```
 1.  cropFrameMinWidth  - minimum crop frame width (must be >= 50).
 2.  cropFrameMinHeight - minimum crop frame height (must be >= 50).
