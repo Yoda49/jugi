@@ -106,6 +106,12 @@ Server side part of Jugi written for node.js framework express.js.
 It is used when you need to limit user access to edit images on your server. In a user handler function you can identify the user and return "boolean true" if the user is authorized. The "boolean false" forbids user access to a server part of Jugi. If the handler is not specified, all users have access. 
 
 Jugi.secure passes two parameters to user handler: req & res (standart objects of express.js).
+```js
+function userHandler(req, res)
+{
+	***if (allowed user) return true; else return false;***
+}
+```
 
 ### jugi.processor (req, res, next)
 
