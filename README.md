@@ -21,16 +21,16 @@ the handlers (cropHandler & resizeHandler). The default handlers use GET request
 
 Do initialization with default config:
 ```
-1. cropFrameMinWidth  = 100
-2. cropFrameMinHeight = 100
-3. initialValueX1     = 0
-4. initialValueY1     = 0
-5. cropFrameColor     = "black"
-6. cropFrameOpacity   = 0.15
-7. jpegQuality        = 90
-8. language           = "eng"
-9. savePath           = __dirname + "/public"
-10. menuOrientation   = "h"
+1.  cropFrameMinWidth  = 100
+2.  cropFrameMinHeight = 100
+3.  initialValueX1     = 0
+4.  initialValueY1     = 0
+5.  cropFrameColor     = "black"
+6.  cropFrameOpacity   = 0.15
+7.  jpegQuality        = 90
+8.  language           = "eng"
+9.  savePath           = __dirname + "/public"
+10. menuOrientation    = "h"
 ```
 
 ### jugi.init(config)
@@ -109,7 +109,7 @@ Jugi.secure passes two parameters to user handler: req & res (standart objects o
 ```js
 function userHandler(req, res)
 {
-	***if (allowed user) return true; else return false;***
+	if (allowed user) return true; else return false;
 }
 ```
 
