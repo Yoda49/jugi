@@ -17,7 +17,7 @@ the handlers (cropHandler & resizeHandler). The default handlers use GET request
 
 ## Client side Jugi API:
 
-**jugi.init()**
+###jugi.init()###
 
 Do initialization with default config:
 ```
@@ -33,7 +33,7 @@ Do initialization with default config:
 10. menuOrientation   = "h"
 ```
 
-**jugi.init(config)**
+###jugi.init(config)###
 
 Do initialization with user config. The config must be an object with the next possible properties:
 ```
