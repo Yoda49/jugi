@@ -187,9 +187,9 @@ Now images will be saved in c:/user/node/server/public/images.
 
 ## INSTALLATION.
 
-Server side: npm install jugi --save
+**Server side:** npm install jugi --save
 
-Client side: just copy jugi-client.js to you project javascript directory, add 2 div`s to your HTML.
+**Client side:** just connect jugi-client.js & jugi.css to you project, add 2 DIV`s to your HTML.
 
 
 
