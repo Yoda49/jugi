@@ -178,16 +178,16 @@ Save path example:
 c:/user/node/server/main.js - path to you main file of node.js server.
 c:/user/node/server/public - directory of your static files e.g. js, css, images.
 c:/user/node/server/public/images - directory of you static images.
-```
+
 You must set savePath = "c:/user/node/server/public/images" during initialization jugi.init(options).
 in this case all images will be saved in c:/user/node/server/public/images.
-
+```
 
 ## INSTALLATION.
 
 Server side: npm install jugi --save
 
-Client side: just copy jugi.js to you project javascript directory, add 2 div`s to your HTML.
+Client side: just copy jugi-client.js to you project javascript directory, add 2 div`s to your HTML.
 
 
 
