@@ -173,13 +173,16 @@ Examples:
 
 **ADD PATH / FILE NAME** - residual part of local node.js server path for saving images. It can include only a name.
 
-Save path example:
+Example:
 ```
+If your working directory is:
+
 c:/user/node/server/main.js - path to you main file of node.js server.
 c:/user/node/server/public - directory of your static files e.g. js, css, images.
 c:/user/node/server/public/images - directory of you static images.
 
-In this case you must set savePath = "c:/user/node/server/public/images" during initialization jugi.init(options). Now images will be saved in c:/user/node/server/public/images.
+You must set savePath = "c:/user/node/server/public/images" during initialization jugi.init(options). 
+Now images will be saved in c:/user/node/server/public/images.
 ```
 
 ## INSTALLATION.
