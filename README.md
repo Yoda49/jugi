@@ -1,6 +1,6 @@
 # Jugi. Jimp Graphics User Interface.
 ```
-version: 0.0.7
+version: 0.0.8
 
 email: yurevich.pavel@gmail.com
 ```
@@ -21,8 +21,8 @@ the handlers (cropHandler & resizeHandler). The default handlers use GET request
 
 Make initialization with default config:
 ```
-1.  cropFrameMinWidth  = 100
-2.  cropFrameMinHeight = 100
+1.  cropFrameMinWidth  = 50
+2.  cropFrameMinHeight = 50
 3.  initialValueX1     = 0
 4.  initialValueY1     = 0
 5.  cropFrameColor     = "black"

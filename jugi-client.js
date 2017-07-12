@@ -3,7 +3,7 @@
 // ======================================================
 
 // author: Pavel Yurevich aka yoda49
-// version: 0.0.5
+// version: 0.0.8
 
 var jugi = 
 {
@@ -130,81 +130,83 @@ var jugi =
 		
 		if (this.language == "eng")
 		{
-			menu += "	<DIV STYLE='border: 1px solid #777777; padding: 5px; display: inline-block; margin-bottom: 5px; background: #EEEEEE;'>";
-			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 185px;'>Link to image:</SPAN>";
-			menu += "		<INPUT STYLE='width: 247px; margin-bottom: 5px;' ID='link' PLACEHOLDER='Enter local or web link'><BR>";
+			menu += "	<DIV CLASS='box'>";
+			menu += "		<SPAN  CLASS='eng_text'>Link to image:</SPAN>";
+			menu += "		<INPUT CLASS='eng_big_input' ID='link' PLACEHOLDER='Enter local or web link'><BR>";
 			
-			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 185px;'>Save path:</SPAN>";
-			menu += "		<INPUT STYLE='width: 247px; margin-bottom: 5px;' ID='save_path' PLACEHOLDER='Default path (__dirname + &prime;public&prime;)'><BR>";
+			menu += "		<SPAN  CLASS='eng_text'>Save path:</SPAN>";
+			menu += "		<INPUT CLASS='eng_big_input' ID='save_path' PLACEHOLDER='Default path (__dirname + &prime;public&prime;)'><BR>";
 			
-			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 185px;'>Add path / file name:</SPAN>";
-			menu += "		<INPUT STYLE='width: 247px; margin-bottom: 5px;' ID='file_name'><BR>";
+			menu += "		<SPAN  CLASS='eng_text'>Add path / file name:</SPAN>";
+			menu += "		<INPUT CLASS='eng_big_input' ID='file_name'><BR>";
 			
-			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 185px;' ID='statistic_color'>Status:</SPAN>";
-			menu += "		<INPUT STYLE='width: 247px;' ID='statistic' DISABLED>";
+			menu += "		<SPAN  CLASS='eng_text' ID='statistic_color'>Status:</SPAN>";
+			menu += "		<INPUT CLASS='statistic_eng' ID='statistic' DISABLED>";
 			menu += "	</DIV>" + this.menuOrientation;
 			
-			menu += "	<DIV STYLE='border: 1px solid #777777; padding: 5px; display:inline-block; background: #EEEEEE;'>";
-			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 185px;'>Original size:</SPAN>";
-			menu += "		<INPUT TITLE='Width' TYPE='number' ID='size_x' STYLE='width: 50px; margin-bottom: 5px;' DISABLED>";
-			menu += "		<SPAN STYLE='font: bold 90% verdana;'> x </SPAN>";
-			menu += "		<INPUT TITLE='Height' TYPE='number' ID='size_y' STYLE='width: 50px;' DISABLED>&ensp;";
-			menu += "		<INPUT STYLE='width: 98px; margin-bottom: 5px; padding-left: 10px;' ID='source' DISABLED><BR>";
+			menu += "	<DIV CLASS='box'>";
+			menu += "		<SPAN  CLASS='eng_text'>Original size:</SPAN>";
+			menu += "		<INPUT CLASS='small_input' TITLE='Width' TYPE='number' ID='size_x' DISABLED>";
+			menu += "		<SPAN  CLASS='cross'> x </SPAN>";
+			menu += "		<INPUT CLASS='small_input' TITLE='Height' TYPE='number' ID='size_y' DISABLED>&ensp;";
+			menu += "		<INPUT CLASS='source_eng' ID='source' DISABLED><BR>";
 			
-			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 185px;'>New size:</SPAN>";
-			menu += "		<INPUT TITLE='Width' TYPE='number' ID='new_size_x' STYLE='width: 50px; margin-bottom: 5px;'>";
-			menu += "		<SPAN STYLE='font: bold 90% verdana;'> x </SPAN>";
-			menu += "		<INPUT TITLE='Height' TYPE='number' ID='new_size_y' STYLE='width: 50px;'>&ensp;";
-			menu += "		<INPUT STYLE='width: 112px' TYPE='button' ID='jui_resize' VALUE='Resize image'><BR>";
+			menu += "		<SPAN  CLASS='eng_text'>New size:</SPAN>";
+			menu += "		<INPUT CLASS='small_input' TITLE='Width' TYPE='number' ID='new_size_x'>";
+			menu += "		<SPAN  CLASS='cross'> x </SPAN>";
+			menu += "		<INPUT CLASS='small_input' TITLE='Height' TYPE='number' ID='new_size_y'>&ensp;";
+			menu += "		<INPUT CLASS='button_eng' TYPE='button' ID='jui_resize' VALUE='Resize image'><BR>";
 			
-			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 185px;'>Crop window:</SPAN>";
-			menu += "		<INPUT TITLE='Width' MIN='" + jugi.frame_min_w + "' VALUE='" + jugi.frame_min_w + "' TYPE='number' ID='frame_size_x' STYLE='width: 50px; margin-bottom: 5px;'>";
-			menu += "		<SPAN STYLE='font: bold 90% verdana;'> x </SPAN>";
-			menu += "		<INPUT TITLE='Height' MIN='" + jugi.frame_min_h + "' VALUE='" + jugi.frame_min_h + "' TYPE='number' ID='frame_size_y' STYLE='width: 50px;'>&ensp;";
-			menu += "		<INPUT STYLE='width: 112px; margin-bottom: 5px;' TYPE='button' ID='jui_crop' VALUE='Crop image'><BR>";
+			menu += "		<SPAN  CLASS='eng_text'>Crop window:</SPAN>";
+			menu += "		<INPUT CLASS='small_input' TITLE='Width' MIN='" + jugi.frame_min_w + "' VALUE='" + jugi.frame_min_w + "' TYPE='number' ID='frame_size_x'>";
+			menu += "		<SPAN  CLASS='cross'> x </SPAN>";
+			menu += "		<INPUT CLASS='small_input' TITLE='Height' MIN='" + jugi.frame_min_h + "' VALUE='" + jugi.frame_min_h + "' TYPE='number' ID='frame_size_y'>&ensp;";
+			menu += "		<INPUT CLASS='button_eng' TYPE='button' ID='jui_crop' VALUE='Crop image'><BR>";
 			
-			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 185px;'>Jpeg quality:</SPAN>";
-			menu += "		<INPUT MIN='1' MAX='100' STYLE='width: 50px;' TYPE='number' ID='jpeg_quality' VALUE='" + this.jpegQuality + "'><BR>";
+			menu += "		<SPAN  CLASS='eng_text'>Jpeg quality:</SPAN>";
+			menu += "		<INPUT CLASS='jpeg_quality' MIN='1' MAX='100' TYPE='number' ID='jpeg_quality' VALUE='" + this.jpegQuality + "'><BR>";
+			
+			menu += "		<DIV  CLASS='logo'>Jugi</DIV>";
 			menu += "	</DIV>";
-
 		}
 		else
 		{
-			menu += "	<DIV STYLE='border: 1px solid #777777; padding: 5px; display: inline-block; margin-bottom: 5px; background: #EEEEEE;'>";
-			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 270px;'>Ссылка на изображение:</SPAN>";
-			menu += "		<INPUT STYLE='width: 315px; margin-bottom: 5px;' ID='link' PLACEHOLDER='Введите локальную или веб-ссылку'><BR>";
+			menu += "	<DIV CLASS='box'>";
+			menu += "		<SPAN  CLASS='rus_text'>Ссылка на изображение:</SPAN>";
+			menu += "		<INPUT CLASS='rus_big_input' ID='link' PLACEHOLDER='Введите локальную или веб-ссылку'><BR>";
 			
-			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 270px;'>Путь для сохранения:</SPAN>";
-			menu += "		<INPUT STYLE='width: 315px; margin-bottom: 5px;' ID='save_path' PLACEHOLDER='Путь по умолчанию (__dirname + &prime;public&prime;)'><BR>";
+			menu += "		<SPAN  CLASS='rus_text'>Путь для сохранения:</SPAN>";
+			menu += "		<INPUT CLASS='rus_big_input' ID='save_path' PLACEHOLDER='Путь по умолчанию (__dirname + &prime;public&prime;)'><BR>";
 			
-			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 270px;'>Добавочный путь / имя файла:</SPAN>";
-			menu += "		<INPUT STYLE='width: 315px; margin-bottom: 5px;' ID='file_name'><BR>";
+			menu += "		<SPAN  CLASS='rus_text'>Добавочный путь / имя файла:</SPAN>";
+			menu += "		<INPUT CLASS='rus_big_input' ID='file_name'><BR>";
 			
-			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 270px;' ID='statistic_color'>Статистика:</SPAN>";
-			menu += "		<INPUT STYLE='width: 315px;' ID='statistic' DISABLED>";
+			menu += "		<SPAN  CLASS='rus_text' ID='statistic_color'>Статистика:</SPAN>";
+			menu += "		<INPUT CLASS='statistic_rus' ID='statistic' DISABLED>";
 			menu += "	</DIV>" + this.menuOrientation;
 			
-			menu += "	<DIV STYLE='border: 1px solid #777777; padding: 5px; display:inline-block; background: #EEEEEE;'>";
-			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 270px;'>Оригинальный размер:</SPAN>";
-			menu += "		<INPUT TITLE='Ширина' TYPE='number' ID='size_x' STYLE='width: 50px; margin-bottom: 5px;' DISABLED>";
-			menu += "		<SPAN STYLE='font: bold 90% verdana;'> x </SPAN>";
-			menu += "		<INPUT TITLE='Высота' TYPE='number' ID='size_y' STYLE='width: 50px;' DISABLED>&ensp;";
+			menu += "	<DIV CLASS='box'>";
+			menu += "		<SPAN  CLASS='rus_text'>Оригинальный размер:</SPAN>";
+			menu += "		<INPUT CLASS='small_input' TITLE='Ширина' TYPE='number' ID='size_x' DISABLED>";
+			menu += "		<SPAN  CLASS='cross'> x </SPAN>";
+			menu += "		<INPUT CLASS='small_input' TITLE='Высота' TYPE='number' ID='size_y' DISABLED>&ensp;";
 			menu += "		<INPUT STYLE='width: 171px; margin-bottom: 5px; padding-left: 5px;' ID='source' DISABLED><BR>";
 			
-			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 270px;'>Новый размер:</SPAN>";
-			menu += "		<INPUT TITLE='Ширина' TYPE='number' ID='new_size_x' STYLE='width: 50px; margin-bottom: 5px;'>";
-			menu += "		<SPAN STYLE='font: bold 90% verdana;'> x </SPAN>";
-			menu += "		<INPUT TITLE='Высота' TYPE='number' ID='new_size_y' STYLE='width: 50px;'>&ensp;";
-			menu += "		<INPUT STYLE='width: 180px' TYPE='button' ID='jui_resize' VALUE='Изменить размер'><BR>";
+			menu += "		<SPAN  CLASS='rus_text'>Новый размер:</SPAN>";
+			menu += "		<INPUT CLASS='small_input' TITLE='Ширина' TYPE='number' ID='new_size_x'>";
+			menu += "		<SPAN  CLASS='cross'> x </SPAN>";
+			menu += "		<INPUT CLASS='small_input' TITLE='Высота' TYPE='number' ID='new_size_y'>&ensp;";
+			menu += "		<INPUT CLASS='button_rus' TYPE='button' ID='jui_resize' VALUE='Изменить размер'><BR>";
 			
-			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 270px;'>Область обрезки:</SPAN>";
-			menu += "		<INPUT TITLE='Ширина' MIN='" + jugi.frame_min_w + "' VALUE='" + jugi.frame_min_w + "' TYPE='number' ID='frame_size_x' STYLE='width: 50px; margin-bottom: 5px;'>";
-			menu += "		<SPAN STYLE='font: bold 90% verdana;'> x </SPAN>";
-			menu += "		<INPUT TITLE='Высота' MIN='" + jugi.frame_min_h + "' VALUE='" + jugi.frame_min_h + "' TYPE='number' ID='frame_size_y' STYLE='width: 50px;'>&ensp;";
-			menu += "		<INPUT STYLE='width: 180px; margin-bottom: 5px;' TYPE='button' ID='jui_crop' VALUE='Обрезать изображение'><BR>";
+			menu += "		<SPAN  CLASS='rus_text'>Область обрезки:</SPAN>";
+			menu += "		<INPUT CLASS='small_input' TITLE='Ширина' MIN='" + jugi.frame_min_w + "' VALUE='" + jugi.frame_min_w + "' TYPE='number' ID='frame_size_x'>";
+			menu += "		<SPAN  CLASS='cross'> x </SPAN>";
+			menu += "		<INPUT CLASS='small_input' TITLE='Высота' MIN='" + jugi.frame_min_h + "' VALUE='" + jugi.frame_min_h + "' TYPE='number' ID='frame_size_y'>&ensp;";
+			menu += "		<INPUT CLASS='button_rus' TYPE='button' ID='jui_crop' VALUE='Обрезать изображение'><BR>";
 			
-			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 270px;'>Качество JPEG:</SPAN>";
-			menu += "		<INPUT MIN='1' MAX='100' STYLE='width: 50px;' TYPE='number' ID='jpeg_quality' VALUE='" + this.jpegQuality + "'><BR>";
+			menu += "		<SPAN  CLASS='rus_text'>Качество JPEG:</SPAN>";
+			menu += "		<INPUT CLASS='jpeg_quality' MIN='1' MAX='100' TYPE='number' ID='jpeg_quality' VALUE='" + this.jpegQuality + "'><BR>";
+			menu += "		<DIV   CLASS='logo'>Jugi</DIV>";
 			menu += "	</DIV>";
 		}	
 		

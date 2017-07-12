@@ -1,0 +1,76 @@
+.box
+{
+	border: 1px solid #777777; 
+	padding: 5px; 
+	display: inline-block; 
+	margin-bottom: 5px; 
+	background: #EEEEEE;
+	position: relative;
+}
+.rus_text
+{
+	display: inline-block; 
+	font: bold 90% verdana; 
+	width: 270px;
+}
+.eng_text
+{
+	display: inline-block; 
+	font: bold 90% verdana; 
+	width: 185px;
+}
+.eng_big_input
+{
+	width: 247px; 
+	margin-bottom: 5px;
+}
+.rus_big_input
+{
+	width: 315px;
+	margin-bottom: 5px;
+}
+.small_input
+{
+	width: 50px; 
+	margin-bottom: 5px;
+}
+.jpeg_quality
+{
+	width: 50px;
+}
+.cross
+{
+	font: bold 90% verdana;
+}
+.button_eng
+{
+	width: 112px; 
+	margin-bottom: 5px;
+}
+.button_rus
+{
+	width: 180px; 
+	margin-bottom: 5px;
+}
+.statistic_eng
+{
+	width: 247px;
+}
+.statistic_rus
+{
+	width: 315px;
+}
+.source_eng
+{
+	width: 98px; 
+	margin-bottom: 5px; 
+	padding-left: 10px;
+}
+.logo
+{
+	position: absolute; 
+	opacity: 0.2; 
+	right: 5px; 
+	bottom: 5px; 
+	font: bold 120% serif;
+}
