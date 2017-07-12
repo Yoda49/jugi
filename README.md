@@ -179,8 +179,7 @@ c:/user/node/server/main.js - path to you main file of node.js server.
 c:/user/node/server/public - directory of your static files e.g. js, css, images.
 c:/user/node/server/public/images - directory of you static images.
 
-In this case you must set savePath = **"c:/user/node/server/public/images"** during initialization jugi.init(options).
-in this case all images will be saved in c:/user/node/server/public/images.
+In this case you must set savePath = "c:/user/node/server/public/images" during initialization jugi.init(options). Now images will be saved in c:/user/node/server/public/images.
 ```
 
 ## INSTALLATION.
