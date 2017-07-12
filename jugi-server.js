@@ -3,7 +3,7 @@
 // ======================================================
 
 // author: Pavel Yurevich aka yoda49
-// version: 0.0.6
+// version: 0.0.7
 
 var jimp          = require("jimp");
 var fs            = require('fs');

@@ -1,6 +1,6 @@
 # Jugi. Jimp Graphics User Interface.
 ```
-version: 0.0.6
+version: 0.0.7
 
 email: yurevich.pavel@gmail.com
 ```
@@ -51,7 +51,7 @@ Do initialization with user config. The config must be an object with the next p
 The wrong options will be ignored.
 ```
 
-**jugi.cropHandler (function (data, error) {})**
+### jugi.cropHandler (function (data, error) {})
 
 Override crop button handler with user function. The handler passes two parameters to user function:
 ```
@@ -75,7 +75,7 @@ Object 'data' contains the following properties:
 13. isImageLocal - boolean type (is image from same server or from another server)
 ```
 
-**jugi.resizeHandler (function (data, error) {})**
+### jugi.resizeHandler (function (data, error) {})
 
 Override resize button handler with user function. The handler passes two parameters to user function:
 ```
@@ -101,13 +101,13 @@ Object 'data' contains the following properties:
 
 Server side part of Jugi written for node.js framework express.js.
 
-**jugi.secure (userHandler)**
+### jugi.secure (userHandler)
 
 It is used when you need to limit user access to edit images on your server. In a user handler function you can identify the user and return "boolean true" if the user is authorized. The "boolean false" forbids user access to a server part of Jugi. If the handler is not specified, all users have access. 
 
 Jugi.secure passes two parameters to user handler: req & res (standart objects of express.js).
 
-**jugi.processor (req, res, next)**
+### jugi.processor (req, res, next)
 
 Main function for processing requests from client side.
 
