@@ -19,6 +19,10 @@
     "user interface",
     "image"
   ],
+  "repository" :
+  { "type" : "git"
+  , "url" : "https://github.com/Yoda49/jugi"
+  },
   "_npmUser": {
     "name": "yoda49",
     "email": "upv@bk.ru"
