@@ -53,6 +53,8 @@ The wrong options will be ignored.
 
 ### jugi.cropHandler (function (data, error) {})
 
+*You need to use this function if you work with your server part*
+
 Override crop button handler with user function. The handler passes two parameters to user function:
 ```
 1. data - object with crop parameters.
@@ -76,6 +78,8 @@ Object 'data' contains the following properties:
 ```
 
 ### jugi.resizeHandler (function (data, error) {})
+
+*You need to use this function if you work with your server part*
 
 Override resize button handler with user function. The handler passes two parameters to user function:
 ```
