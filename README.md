@@ -144,9 +144,11 @@ http://192.168.1.1:2000/image.jpg
 **Quick link: If you want load local image (from same server which script) you can add "+" before your image url.**
 
 Examples:
+```html
 +/image.jpg
 +/images/your_image.png
 +/preview/image1.bmp
+```
 
 ## Description of menu.
 
@@ -168,5 +170,8 @@ in this case all images will be saved in c:/user/node/server/public/images.
 
 ## INSTALLATION.
 
-npm install jugi --save
+Server side: npm install jugi --save
+Client side: just copy jugi.js to you project javascript directory, add 2 div`s to your HTML.
+
+![jugi.js](http://isee.by/images/kim.jpg)
 
