@@ -112,6 +112,8 @@ Main function for processing requests from client side.
 Using:
 ```js
 var jugi = require("jugi");
+
+jugi.secure(userHandler());
 app.use(jugi.processor);
 ```
 or, if you don't need user identification:
