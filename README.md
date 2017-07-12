@@ -12,6 +12,7 @@ Jugi consists of two parts:
 
 But you can use this UI with another server-side image processing tools - all you need is just to override 
 the handlers (cropHandler & resizeHandler). The default handlers use GET requests to the server.
+
 ![jugi.js](http://isee.by/images/kim.jpg)
 
 ## Client side Jugi API:
