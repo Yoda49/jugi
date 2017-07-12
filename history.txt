@@ -13,6 +13,6 @@ Version: 0.0.1 [11.07.2017]
 * Secure handler in server-side part.
 
 ###########################
-Version: 0.0.5 [12.07.2017]
+Version: 0.0.6 [12.07.2017]
 ########################### 
 * Fix some bugs.

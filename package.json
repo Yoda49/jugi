@@ -1,6 +1,6 @@
 {
   "name": "jugi",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "This tool is light-weight user graphics interface for \"Javascript image manipulatuon tools\" aka Jimp.",
   "main": "jugi-server.js",
   "scripts": {

@@ -54,6 +54,7 @@ var jugi =
 	},
 	
 	language: "eng",
+	menuOrientation: "",
 	
 	// data for save
 	savePath: "",
@@ -61,7 +62,11 @@ var jugi =
 
 	imageLoaded: false,
 	isImageLocal: undefined,
-	hostname: document.location.hostname,
+	
+	// for status
+	timerId: undefined,
+	status: undefined,
+	blockStatus: false,
 	
 	// init 
 	init: function (config) 
@@ -101,14 +106,14 @@ var jugi =
 				this.frame_y2 = this.frame_y1 + this.frame_min_h;
 				this.defaults.frame_y1 = config.initialValueY1;
 			}
-			if (config.frameColor != undefined)
+			if (config.cropFrameColor != undefined)
 			{
-				this.frameColor = config.frameColor;
+				this.frameColor = config.cropFrameColor;
 				if (typeof(this.frameColor) != "string" || this.frameColor == "" || this.frameColor.length > 100) this.frameColor = "black";
 			}
-			if (config.frameOpacity != undefined)
+			if (config.cropFrameOpacity != undefined)
 			{
-				this.frameOpacity = config.frameOpacity;
+				this.frameOpacity = config.cropFrameOpacity;
 				if (typeof(this.frameOpacity) == "string" || isNaN(this.frameOpacity) || this.frameOpacity > 1  || this.frameOpacity < 0) this.frameOpacity = "0.15"; else this.frameOpacity = this.frameOpacity.toString();
 			}
 			
@@ -117,6 +122,7 @@ var jugi =
 			
 			if (config.savePath != undefined) this.savePath = config.savePath;
 			if (this.savePath.charAt(this.savePath.length - 1) == "/") this.savePath = this.savePath.substring(0, this.savePath.length - 1);
+			if (config.menuOrientation != undefined && config.menuOrientation == "v") this.menuOrientation = "<BR>";		
 		}
 	
 		// fill div "jui_menu"
@@ -124,6 +130,7 @@ var jugi =
 		
 		if (this.language == "eng")
 		{
+			menu += "	<DIV STYLE='border: 1px solid #777777; padding: 5px; display: inline-block; margin-bottom: 5px; background: #EEEEEE;'>";
 			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 185px;'>Link to image:</SPAN>";
 			menu += "		<INPUT STYLE='width: 247px; margin-bottom: 5px;' ID='link' PLACEHOLDER='Enter local or web link'><BR>";
 			
@@ -131,8 +138,13 @@ var jugi =
 			menu += "		<INPUT STYLE='width: 247px; margin-bottom: 5px;' ID='save_path' PLACEHOLDER='Default path (__dirname + &prime;public&prime;)'><BR>";
 			
 			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 185px;'>Add path / file name:</SPAN>";
-			menu += "		<INPUT STYLE='width: 247px; margin-bottom: 5px;' ID='file_name'><BR><BR>";
+			menu += "		<INPUT STYLE='width: 247px; margin-bottom: 5px;' ID='file_name'><BR>";
 			
+			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 185px;' ID='statistic_color'>Status:</SPAN>";
+			menu += "		<INPUT STYLE='width: 247px;' ID='statistic' DISABLED>";
+			menu += "	</DIV>" + this.menuOrientation;
+			
+			menu += "	<DIV STYLE='border: 1px solid #777777; padding: 5px; display:inline-block; background: #EEEEEE;'>";
 			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 185px;'>Original size:</SPAN>";
 			menu += "		<INPUT TITLE='Width' TYPE='number' ID='size_x' STYLE='width: 50px; margin-bottom: 5px;' DISABLED>";
 			menu += "		<SPAN STYLE='font: bold 90% verdana;'> x </SPAN>";
@@ -140,52 +152,60 @@ var jugi =
 			menu += "		<INPUT STYLE='width: 98px; margin-bottom: 5px; padding-left: 10px;' ID='source' DISABLED><BR>";
 			
 			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 185px;'>New size:</SPAN>";
-			menu += "		<INPUT TITLE='Width' MIN='" + jugi.frame_min_w + "' TYPE='number' ID='new_size_x' STYLE='width: 50px; margin-bottom: 5px;'>";
+			menu += "		<INPUT TITLE='Width' TYPE='number' ID='new_size_x' STYLE='width: 50px; margin-bottom: 5px;'>";
 			menu += "		<SPAN STYLE='font: bold 90% verdana;'> x </SPAN>";
-			menu += "		<INPUT TITLE='Height' MIN='" + jugi.frame_min_h + "' TYPE='number' ID='new_size_y' STYLE='width: 50px;'>&ensp;";
+			menu += "		<INPUT TITLE='Height' TYPE='number' ID='new_size_y' STYLE='width: 50px;'>&ensp;";
 			menu += "		<INPUT STYLE='width: 112px' TYPE='button' ID='jui_resize' VALUE='Resize image'><BR>";
 			
 			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 185px;'>Crop window:</SPAN>";
-			menu += "		<INPUT TITLE='Width' MIN='" + jugi.frame_min_w + "' TYPE='number' ID='frame_size_x' STYLE='width: 50px; margin-bottom: 5px;'>";
+			menu += "		<INPUT TITLE='Width' MIN='" + jugi.frame_min_w + "' VALUE='" + jugi.frame_min_w + "' TYPE='number' ID='frame_size_x' STYLE='width: 50px; margin-bottom: 5px;'>";
 			menu += "		<SPAN STYLE='font: bold 90% verdana;'> x </SPAN>";
-			menu += "		<INPUT TITLE='Height' MIN='" + jugi.frame_min_h + "' TYPE='number' ID='frame_size_y' STYLE='width: 50px;'>&ensp;";
+			menu += "		<INPUT TITLE='Height' MIN='" + jugi.frame_min_h + "' VALUE='" + jugi.frame_min_h + "' TYPE='number' ID='frame_size_y' STYLE='width: 50px;'>&ensp;";
 			menu += "		<INPUT STYLE='width: 112px; margin-bottom: 5px;' TYPE='button' ID='jui_crop' VALUE='Crop image'><BR>";
 			
 			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 185px;'>Jpeg quality:</SPAN>";
-			menu += "		<INPUT MIN='0' MAX='100' STYLE='width: 50px; margin-bottom: 5px;' TYPE='number' ID='jpeg_quality' VALUE='" + this.jpegQuality + "'><BR>";
+			menu += "		<INPUT MIN='1' MAX='100' STYLE='width: 50px;' TYPE='number' ID='jpeg_quality' VALUE='" + this.jpegQuality + "'><BR>";
+			menu += "	</DIV>";
 
 		}
 		else
 		{
+			menu += "	<DIV STYLE='border: 1px solid #777777; padding: 5px; display: inline-block; margin-bottom: 5px; background: #EEEEEE;'>";
 			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 270px;'>Ссылка на изображение:</SPAN>";
-			menu += "		<INPUT STYLE='width: 315px; margin-bottom: 5px;' ID='link' PLACEHOLDER='Введите локальную или веб-ссылку'>&ensp;<BR>";
+			menu += "		<INPUT STYLE='width: 315px; margin-bottom: 5px;' ID='link' PLACEHOLDER='Введите локальную или веб-ссылку'><BR>";
 			
 			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 270px;'>Путь для сохранения:</SPAN>";
 			menu += "		<INPUT STYLE='width: 315px; margin-bottom: 5px;' ID='save_path' PLACEHOLDER='Путь по умолчанию (__dirname + &prime;public&prime;)'><BR>";
 			
 			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 270px;'>Добавочный путь / имя файла:</SPAN>";
-			menu += "		<INPUT STYLE='width: 315px; margin-bottom: 5px;' ID='file_name'><BR><BR>";
+			menu += "		<INPUT STYLE='width: 315px; margin-bottom: 5px;' ID='file_name'><BR>";
 			
+			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 270px;' ID='statistic_color'>Статистика:</SPAN>";
+			menu += "		<INPUT STYLE='width: 315px;' ID='statistic' DISABLED>";
+			menu += "	</DIV>" + this.menuOrientation;
+			
+			menu += "	<DIV STYLE='border: 1px solid #777777; padding: 5px; display:inline-block; background: #EEEEEE;'>";
 			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 270px;'>Оригинальный размер:</SPAN>";
 			menu += "		<INPUT TITLE='Ширина' TYPE='number' ID='size_x' STYLE='width: 50px; margin-bottom: 5px;' DISABLED>";
 			menu += "		<SPAN STYLE='font: bold 90% verdana;'> x </SPAN>";
 			menu += "		<INPUT TITLE='Высота' TYPE='number' ID='size_y' STYLE='width: 50px;' DISABLED>&ensp;";
-			menu += "		<INPUT STYLE='width: 171px; margin-bottom: 5px; padding-left: 5px;' ID='source' DISABLED>&ensp;<BR>";
+			menu += "		<INPUT STYLE='width: 171px; margin-bottom: 5px; padding-left: 5px;' ID='source' DISABLED><BR>";
 			
 			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 270px;'>Новый размер:</SPAN>";
-			menu += "		<INPUT TITLE='Ширина' MIN='" + jugi.frame_min_w + "' TYPE='number' ID='new_size_x' STYLE='width: 50px; margin-bottom: 5px;'>";
+			menu += "		<INPUT TITLE='Ширина' TYPE='number' ID='new_size_x' STYLE='width: 50px; margin-bottom: 5px;'>";
 			menu += "		<SPAN STYLE='font: bold 90% verdana;'> x </SPAN>";
-			menu += "		<INPUT TITLE='Высота' MIN='" + jugi.frame_min_h + "' TYPE='number' ID='new_size_y' STYLE='width: 50px;'>&ensp;";
+			menu += "		<INPUT TITLE='Высота' TYPE='number' ID='new_size_y' STYLE='width: 50px;'>&ensp;";
 			menu += "		<INPUT STYLE='width: 180px' TYPE='button' ID='jui_resize' VALUE='Изменить размер'><BR>";
 			
 			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 270px;'>Область обрезки:</SPAN>";
-			menu += "		<INPUT TITLE='Ширина' MIN='" + jugi.frame_min_w + "' TYPE='number' ID='frame_size_x' STYLE='width: 50px; margin-bottom: 5px;'>";
+			menu += "		<INPUT TITLE='Ширина' MIN='" + jugi.frame_min_w + "' VALUE='" + jugi.frame_min_w + "' TYPE='number' ID='frame_size_x' STYLE='width: 50px; margin-bottom: 5px;'>";
 			menu += "		<SPAN STYLE='font: bold 90% verdana;'> x </SPAN>";
-			menu += "		<INPUT TITLE='Высота' MIN='" + jugi.frame_min_h + "' TYPE='number' ID='frame_size_y' STYLE='width: 50px;'>&ensp;";
+			menu += "		<INPUT TITLE='Высота' MIN='" + jugi.frame_min_h + "' VALUE='" + jugi.frame_min_h + "' TYPE='number' ID='frame_size_y' STYLE='width: 50px;'>&ensp;";
 			menu += "		<INPUT STYLE='width: 180px; margin-bottom: 5px;' TYPE='button' ID='jui_crop' VALUE='Обрезать изображение'><BR>";
 			
 			menu += "		<SPAN STYLE='display: inline-block; font: bold 90% verdana; width: 270px;'>Качество JPEG:</SPAN>";
-			menu += "		<INPUT MIN='0' MAX='100' STYLE='width: 50px; margin-bottom: 5px;' TYPE='number' ID='jpeg_quality' VALUE='" + this.jpegQuality + "'><BR>";
+			menu += "		<INPUT MIN='1' MAX='100' STYLE='width: 50px;' TYPE='number' ID='jpeg_quality' VALUE='" + this.jpegQuality + "'><BR>";
+			menu += "	</DIV>";
 		}	
 		
 		document.getElementById("jui_menu").innerHTML = menu;
@@ -200,16 +220,12 @@ var jugi =
 		area += "		<DIV ID='frame1' STYLE='display: none; background: white; opacity: 0.45; cursor: move; position: absolute; border: 2px solid #55CCEE; height: 20px; width: 20px;'></DIV>";
 		area += "		<DIV ID='frame2' STYLE='display: none; background: white; opacity: 0.45; cursor: move; position: absolute; border: 2px solid #55CCEE; height: 20px; width: 20px;'></DIV>";
 		area += "		<DIV ID='frame3' STYLE='display: none; background: white; opacity: 0.45; cursor: move; position: absolute; border: 2px solid #55CCEE; height: 20px; width: 20px;'></DIV>";
-		
-		if (jugi.language == "eng")area += "		<DIV ID='error'  STYLE='display: none; padding: 5px; color: red; font: bold 100% verdana;'><CENTER>Error image loading!</CENTER></DIV>";
-		if (jugi.language == "rus")area += "		<DIV ID='error'  STYLE='display: none; padding: 5px; color: red; font: bold 100% verdana;'><CENTER>Ошибка загрузки изображения!</CENTER></DIV>";
-		
 		document.getElementById("jui_area").innerHTML        = area;
 		
 		// set style
 		document.getElementById("jui_area").style.display    = "inline-block";
 		document.getElementById("jui_area").style.marginLeft = "5px";
-		document.getElementById("jui_area").style.border     = "2px solid black";
+		document.getElementById("jui_area").style.border     = "1px solid black";
 		document.getElementById("jui_area").style.position   = "relative";
 		
 		// set style to frame
@@ -217,19 +233,15 @@ var jugi =
 		document.getElementById("frame0").style.background = this.frameColor;
 		
 		// parse url when page is loaded
-		this.link = window.location.search;
-		if (this.link != "")
+		if (document.location.search != "")
 		{
-			this.link = this.link.substring(1); // delete "?"
-			//var randomNum = Math.round(Math.random() * 10000);
-			
-			document.getElementById("image").setAttribute("SRC", this.link);
-			document.getElementById("link").value = this.link;
-			
-			document.getElementById("image").addEventListener("load",  jugi.imageLoadComplete);
-			document.getElementById("image").addEventListener("error", jugi.imageLoadError);
+			this.link = (window.location.search).substring(1); // delete "?"
+			this.handleUrl();
 		}
-
+		
+		document.getElementById("image").addEventListener("load",  jugi.imageLoadComplete);
+		document.getElementById("image").addEventListener("error", jugi.imageLoadError);
+		
 		// handler for body mouse move event
 		document.body.onmousemove = function()
 		{
@@ -351,8 +363,8 @@ var jugi =
 		{ 
 			if(key.which == 13)
 			{
-				var new_link = document.getElementById("link").value;
-				document.getElementById("image").setAttribute("SRC", new_link);
+				jugi.link = document.getElementById("link").value;
+				jugi.handleUrl();
 			}
 		}
 		
@@ -421,7 +433,6 @@ var jugi =
 	
 	imageLoadComplete: function () 
 	{
-		document.getElementById("error" ).style.display = "none";
 		document.getElementById("image" ).style.display = "block";
 		
 		jugi.frame_x1 = jugi.defaults.frame_x1;
@@ -474,32 +485,14 @@ var jugi =
 		
 		jugi.redraw();
 		jugi.imageLoaded = true;
-		jugi.link = document.getElementById("link").value;
-
-		if ((jugi.link).search(jugi.hostname) != -1 || (jugi.link).charAt(0) == "/") jugi.isImageLocal = true; else jugi.isImageLocal = false;
 		
-		if (jugi.isImageLocal)
+		if (jugi.blockStatus == false) 
 		{
-			if (jugi.language == "eng") document.getElementById("source").value = "Source: local"; else document.getElementById("source").value = "Источник: локальный";
-			
-			if ((jugi.link).search("//") != -1)
-			{
-				var pos = (jugi.link).search("//");
-				jugi.fileName = (jugi.link).substring(pos + 2);
-				pos = (jugi.fileName).search("/");
-				jugi.fileName = (jugi.fileName).substring(pos);
-			}
-			else
-			{
-				jugi.fileName = jugi.link;
-			}
+			if (jugi.language == "eng") jugi.handleStatus("The image is successfully loaded!", true); else jugi.handleStatus("Изображение успешно загружено!", true);
 		}
-		else
-		{
-			if (jugi.language == "eng") document.getElementById("source").value = "Source: web"; else document.getElementById("source").value = "Источник: интернет";
-			jugi.fileName = (jugi.link).split("/");
-			jugi.fileName = "/" + jugi.fileName[jugi.fileName.length - 1];
-		}
+
+		jugi.blockStatus = false;
+	
 		document.getElementById("file_name").value = jugi.fileName;
 		document.getElementById("save_path").value = jugi.savePath;
 	},
@@ -509,12 +502,8 @@ var jugi =
 	// ==============================================
 	imageLoadError: function () 
 	{
-		document.getElementById("frame0").style.display = "none";
-		document.getElementById("frame1").style.display = "none";
-		document.getElementById("frame2").style.display = "none";
-		document.getElementById("frame3").style.display = "none";
-		document.getElementById("image" ).style.display = "none";
-		document.getElementById("error" ).style.display = "block";
+		jugi.clearFields();
+		if (jugi.language == "eng") jugi.handleStatus("Image loading error!", false); else jugi.handleStatus("Ошибка загрузки изображения!", false);
 	},
 	
 	redraw: function ()
@@ -587,7 +576,11 @@ var jugi =
 				//alert(xhr.responseText);
 				var refresh_image = jugi.fileName + "?" + new Date().getTime();
 				document.getElementById("link").value = jugi.fileName;
+				jugi.link = jugi.fileName;
 				document.getElementById("image").setAttribute("SRC", refresh_image);
+				if (jugi.language == "eng") jugi.handleStatus("Image resize OK!", true); else jugi.handleStatus("Размеры изменены успешно!", true);
+				jugi.blockStatus = true;
+				jugi.isImageLocal = true;
 			}
 		}
 	},
@@ -635,9 +628,96 @@ var jugi =
 				//alert(xhr.responseText);	
 				var refresh_image = jugi.fileName + "?" + new Date().getTime();
 				document.getElementById("link").value = jugi.fileName;
+				jugi.link = jugi.fileName;
 				document.getElementById("image").setAttribute("SRC", refresh_image);
+				if (jugi.language == "eng") jugi.handleStatus("Image crop OK!", true); else jugi.handleStatus("Изображение обрезано успешно!", true);
+				jugi.blockStatus = true;
+				jugi.isImageLocal = true;
 			}
 		}
+	},
+	
+	handleStatus: function (message, type)
+	{
+		document.getElementById("statistic").value = message;
+		
+		if (type == true ) document.getElementById("statistic_color").style.color = "green";
+		if (type == false) document.getElementById("statistic_color").style.color = "red";
+		
+		if (this.status) clearTimeout(this.timerId);
+		
+		this.timeId = setTimeout(function ()
+		{
+			document.getElementById("statistic").value = ""; 
+			document.getElementById("statistic_color").style.color = "black";
+			jugi.status = false;
+		}, 5000);
+	},
+	
+	handleUrl: function ()
+	{
+		var url = jugi.link;
+		var pos = 0;
+		
+		// if user add +
+		if (jugi.link.substring(0, 2) != "+/")
+		{
+			pos = url.search("//");
+			if (pos == -1 || (url.substring(0, pos) != "http:" && url.substring(0, pos) != "https:" && url.substring(0, pos) != "")) {jugi.handleStatus("Wrong URL!", false); jugi.clearFields(); return;};
+			url = url.substring(pos + 2);
+			
+			pos = url.search("/");
+			if (pos == -1) {jugi.handleStatus("Wrong URL!", false); jugi.clearFields(); return;};
+			if (url.substring(0, pos) == document.location.host) jugi.isImageLocal = true; else jugi.isImageLocal = false;
+		}
+		else
+		{
+			jugi.link = jugi.link.substring(1);
+			url = url.substring(1);
+			jugi.isImageLocal = true;
+		}	
+		
+		if (jugi.isImageLocal)
+		{
+			// fill filetype field;
+			if (jugi.language == "eng") document.getElementById("source").value = "Source: local"; else document.getElementById("source").value = "Источник: локальный";
+			jugi.fileName = url.substring(pos);
+		}
+		else
+		{
+			// fill filetype field;
+			if (jugi.language == "eng") document.getElementById("source").value = "Source: web"; else document.getElementById("source").value = "Источник: интернет";
+			
+			jugi.fileName = (jugi.link).split("/");
+			jugi.fileName = "/" + jugi.fileName[jugi.fileName.length - 1];
+		}
+							
+		document.getElementById("image").setAttribute("SRC", jugi.link);
+		document.getElementById("link").value = jugi.link;
+					
+	},
+	
+	clearFields: function ()
+	{
+		document.getElementById("frame0").style.display = "none";
+		document.getElementById("frame1").style.display = "none";
+		document.getElementById("frame2").style.display = "none";
+		document.getElementById("frame3").style.display = "none";
+		document.getElementById("image" ).style.display = "none";
+		
+		document.getElementById("save_path" ).value = "";
+		document.getElementById("file_name" ).value = "";
+		document.getElementById("new_size_x" ).value = "";
+		document.getElementById("new_size_y" ).value = "";
+		
+		document.getElementById("source" ).value = "";
+		
+		document.getElementById("size_x" ).value = "";
+		document.getElementById("size_y" ).value = "";
+		document.getElementById("frame_size_x" ).value = jugi.frame_min_w;
+		document.getElementById("frame_size_y" ).value = jugi.frame_min_h;
+		
+		document.getElementById("jpeg_quality" ).value = jugi.jpegQuality;
 	}
 
 }

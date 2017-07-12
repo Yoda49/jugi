@@ -1,6 +1,6 @@
 # Jugi. Jimp Graphics User Interface.
 ```
-version: 0.0.5
+version: 0.0.6
 
 email: yurevich.pavel@gmail.com
 ```
@@ -20,30 +20,32 @@ the handlers (cropHandler & resizeHandler). The default handlers use GET request
 
 Do initialization with default config:
 ```
-1. cropFrameMinWidth    = 100
-2. cropFrameMinHeight   = 100
-3. initialValueX1       = 0
-4. initialValueY1       = 0
-5. frameColor           = "black"
-6. frameOpacity         = 0.15
-7. jpegQuality          = 90
-8. language             = "eng"
-9. savePath             = __dirname + "/public"
+1. cropFrameMinWidth  = 100
+2. cropFrameMinHeight = 100
+3. initialValueX1     = 0
+4. initialValueY1     = 0
+5. cropFrameColor     = "black"
+6. cropFrameOpacity   = 0.15
+7. jpegQuality        = 90
+8. language           = "eng"
+9. savePath           = __dirname + "/public"
+10. menuOrientation   = "h"
 ```
 
 **jugi.init(config)**
 
 Do initialization with user config. The config must be an object with the next possible properties:
 ```
-1. cropFrameMinWidth    - minimum crop frame width (must be >= 50).
-2. cropFrameMinHeight   - minimum crop frame height (must be >= 50).
-3. initialValueX1       - initial coordinate X of left-top crop frame corner (must be >= zero).
-4. initialValueY1       - initial coordinate Y of left-top crop frame corner (must be >= zero).
-5. frameColor           - crop frame color (must be string) e.g. "green" or "#44AAFF".
-6. frameOpacity         - crop frame opacity (must be number 0 ... 1) e.g. 0.5 or 0.9.
-7. jpegQuality          - set jpeg quality (must be number 1 ... 100).
-8. language             - menu language ("rus" or "eng").
-9. savePath             - save path prefix. By default node.js use __dirname + "/public".
+1.  cropFrameMinWidth  - minimum crop frame width (must be >= 50).
+2.  cropFrameMinHeight - minimum crop frame height (must be >= 50).
+3.  initialValueX1     - initial coordinate X of left-top crop frame corner (must be >= zero).
+4.  initialValueY1     - initial coordinate Y of left-top crop frame corner (must be >= zero).
+5.  cropFrameColor     - crop frame color (must be string) e.g. "green" or "#44AAFF".
+6.  cropFrameOpacity   - crop frame opacity (must be number 0 ... 1) e.g. 0.5 or 0.9.
+7.  jpegQuality        - set jpeg quality (must be number 1 ... 100).
+8.  language           - menu language ("rus" or "eng").
+9.  savePath           - save path prefix. By default node.js use __dirname + "/public".
+10. menuOrientation    - menu orientation ("h" - horizontal, "v" - vertical).
 
 The wrong options will be ignored.
 ```
@@ -57,15 +59,15 @@ Override crop button handler with user function. The handler passes two paramete
 ```
 Object 'data' contains the following properties:
 ```
-1. frameWidth    - width of crop frame.
-2. frameHeight   - height of crop frame.
-3. imageWidth    - width of image.
-4. imageHeight   - height of image.
-5. frameX1       - coordinate X1 of left-top crop frame corner.
-6. frameY1       - coordinate Y2 of left-top crop frame corner.
-7. frameX2       - coordinate X1 of right-bottom crop frame corner.
-8. frameY2       - coordinate Y2 of right-bottom crop frame corner.
-9. link          - link to your image.
+1.  frameWidth   - width of crop frame.
+2.  frameHeight  - height of crop frame.
+3.  imageWidth   - width of image.
+4.  imageHeight  - height of image.
+5.  frameX1      - coordinate X1 of left-top crop frame corner.
+6.  frameY1      - coordinate Y2 of left-top crop frame corner.
+7.  frameX2      - coordinate X1 of right-bottom crop frame corner.
+8.  frameY2      - coordinate Y2 of right-bottom crop frame corner.
+9.  link         - link to your image.
 10. jpegQuality  - percentage of jpeg quality.
 11. savePath     - node.js local save path.
 12. fileName     - node.js local file name.
@@ -123,7 +125,6 @@ app.use(require("jugi").processor);
 
 Examples:
 ```html
-http://you-site.com/image-editor.html?/images/image.jpg
 http://you-site.com/image-editor.html?http://you-site.com/images/image.jpg
 http://you-site.com/image-editor.html?http://another-site.com/image.jpg
 http://you-site.com/image-editor.html?//you-site.com/image.jpg
@@ -139,6 +140,13 @@ http://site.com/image.bmp
 //192.168.1.1/image.jpg
 http://192.168.1.1:2000/image.jpg
 ```
+
+**Quick link: If you want load local image (from same server which script) you can add "+" before your image url.**
+
+Examples:
++/image.jpg
++/images/your_image.png
++/preview/image1.bmp
 
 ## Description of menu.
 
