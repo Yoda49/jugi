@@ -210,10 +210,10 @@ var jugi =
 			menu += "	</DIV>";
 		}	
 		
-		document.getElementById("jui_menu").innerHTML = menu;
+		document.getElementById("jugi_menu").innerHTML = menu;
 		
 		// set style
-		document.getElementById("jui_menu").style.padding = "5px";
+		document.getElementById("jugi_menu").style.padding = "5px";
 		
 		// fill div "jui_area"
 		area = "";
@@ -222,13 +222,13 @@ var jugi =
 		area += "		<DIV ID='frame1' STYLE='display: none; background: white; opacity: 0.45; cursor: move; position: absolute; border: 2px solid #55CCEE; height: 20px; width: 20px;'></DIV>";
 		area += "		<DIV ID='frame2' STYLE='display: none; background: white; opacity: 0.45; cursor: move; position: absolute; border: 2px solid #55CCEE; height: 20px; width: 20px;'></DIV>";
 		area += "		<DIV ID='frame3' STYLE='display: none; background: white; opacity: 0.45; cursor: move; position: absolute; border: 2px solid #55CCEE; height: 20px; width: 20px;'></DIV>";
-		document.getElementById("jui_area").innerHTML        = area;
+		document.getElementById("jugi_area").innerHTML        = area;
 		
 		// set style
-		document.getElementById("jui_area").style.display    = "inline-block";
-		document.getElementById("jui_area").style.marginLeft = "5px";
-		document.getElementById("jui_area").style.border     = "1px solid black";
-		document.getElementById("jui_area").style.position   = "relative";
+		document.getElementById("jugi_area").style.display    = "inline-block";
+		document.getElementById("jugi_area").style.marginLeft = "5px";
+		document.getElementById("jugi_area").style.border     = "1px solid black";
+		document.getElementById("jugi_area").style.position   = "relative";
 		
 		// set style to frame
 		document.getElementById("frame0").style.opacity    = this.frameOpacity;
