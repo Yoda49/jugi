@@ -201,8 +201,8 @@ Now images will be saved in c:/user/node/server/public/images.
 
 **Client side:** just connect jugi-client.js & jugi.css to you project, add 2 DIV`s to your HTML:
 ```html
-<DIV ID='jui_menu'></DIV>
-<DIV ID='jui_area'></DIV>
+<DIV ID='jugi_menu'></DIV>
+<DIV ID='jugi_area'></DIV>
 ```
 
 
