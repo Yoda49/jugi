@@ -50,6 +50,16 @@ Make initialization with user config. The config must be an object with the next
 
 The wrong options will be ignored.
 ```
+Example:
+```
+jugi.init({
+	cropFrameMinWidth: 200,
+	cropFrameMinHeight: 150,
+	cropFrameColor: "yellow",
+	cropFrameOpacity: 0.5,
+	menuOrientation: "h"
+	});
+```
 
 ### jugi.cropHandler (function (data, error) {})
 
@@ -83,7 +93,7 @@ Object 'data' contains the following properties:
 
 Override resize button handler with user function. The handler passes two parameters to user function:
 ```
-1. data - object with crop parameters.
+1. data - object with resize parameters.
 2. error - true when an error occurred.
 ```
 Object 'data' contains the following properties:
@@ -189,7 +199,11 @@ Now images will be saved in c:/user/node/server/public/images.
 
 **Server side:** npm install jugi --save
 
-**Client side:** just connect jugi-client.js & jugi.css to you project, add 2 DIV`s to your HTML.
+**Client side:** just connect jugi-client.js & jugi.css to you project, add 2 DIV`s to your HTML:
+
+<DIV ID='jui_menu'></DIV>
+
+<DIV ID='jui_area'></DIV>
 
 
 

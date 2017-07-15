@@ -426,7 +426,7 @@ var jugi =
 		document.getElementById('file_name').onkeydown = function (key)	{jugi.fileName = document.getElementById("file_name").value;}
 		
 		// handlerS for jpeg_quality input
-		document.getElementById('jpeg_quality').onchange =  function (key) {jugi.jpegQuality = document.getElementById("jpeg_quality").value;}
+		document.getElementById('jpeg_quality').onchange = function (key) {jugi.jpegQuality = document.getElementById("jpeg_quality").value;}
 	}, // init end
 	
 	// ===============================================

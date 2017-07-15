@@ -14,17 +14,16 @@
 <SCRIPT SRC="/jugi-client.js" TYPE="text/javascript"></SCRIPT>
 
 <SCRIPT>
-	var config = {};
-	config.cropFrameMinWidth  = 50;
-	config.cropFrameMinHeight = 50;
-	config.initialValueX1 = 0;
-	config.initialValueY1 = 0;
-	config.frameColor = "green";
-	config.frameOpacity = 0.4;
-	config.language = "eng";
-	config.menuOrientation = "v";
-
-	jugi.init(config);	
+	jugi.init({
+		cropFrameMinWidth: 50,
+		cropFrameMinHeight: 50,
+		initialValueX1: 0,
+		initialValueY1: 0,
+		frameColor: "green",
+		frameOpacity: 0.4,
+		language: "eng",
+		menuOrientation: "v"
+	});
 </SCRIPT>
 
 </HTML>
