@@ -1,6 +1,6 @@
 # Jugi. Jimp Graphics User Interface.
 ```
-version: 0.0.8
+version: 0.1.0
 
 email: yurevich.pavel@gmail.com
 ```
@@ -10,14 +10,13 @@ Jugi consists of two parts:
 1. Client part for web-browser (jugi-client.js). Written in clear JavaScript.
 2. Server part for node.js (jugi-server).js. Written for use with framework express.js.
 
-But you can use this UI with another server-side image processing tools - all you need is just to override 
-the handlers (cropHandler & resizeHandler). The default handlers use GET requests to the server.
-
 ![jugi.js](http://isee.by/images/kim.jpg)
 
 ## Client side Jugi API:
 
-### jugi.init()
+jugi-config.js is used for configuration jugi.
+
+### init() 
 
 Make initialization with default config:
 ```
@@ -28,12 +27,11 @@ Make initialization with default config:
 5.  cropFrameColor     = "black"
 6.  cropFrameOpacity   = 0.15
 7.  jpegQuality        = 90
-8.  language           = "eng"
-9.  savePath           = __dirname + "/public"
-10. menuOrientation    = "h"
+8.  savePath           = __dirname + "/public"
+9.  blockFileOps       = false
 ```
 
-### jugi.init(config)
+### init(config)
 
 Make initialization with user config. The config must be an object with the next possible properties:
 ```
@@ -44,9 +42,8 @@ Make initialization with user config. The config must be an object with the next
 5.  cropFrameColor     - crop frame color (must be string) e.g. "green" or "#44AAFF".
 6.  cropFrameOpacity   - crop frame opacity (must be number 0 ... 1) e.g. 0.5 or 0.9.
 7.  jpegQuality        - set jpeg quality (must be number 1 ... 100).
-8.  language           - menu language ("rus" or "eng").
-9.  savePath           - save path prefix. By default node.js use __dirname + "/public".
-10. menuOrientation    - menu orientation ("h" - horizontal, "v" - vertical).
+8.  savePath           - save path prefix. By default node.js use __dirname + "/public".
+9.  blockFilesOps      - blocking user file operations.
 
 The wrong options will be ignored.
 ```
@@ -57,58 +54,8 @@ jugi.init({
 	cropFrameMinHeight: 150,
 	cropFrameColor: "yellow",
 	cropFrameOpacity: 0.5,
-	menuOrientation: "h"
 	});
 ```
-
-### jugi.cropHandler (function (data, error) {})
-
-*You need to use this function if you work with your server part (not jugi-server)*
-
-Override crop button handler with user function. The handler passes two parameters to user function:
-```
-1. data - object with crop parameters.
-2. error - true when an error occurred.
-```
-Object 'data' contains the following properties:
-```
-1.  frameWidth   - width of crop frame.
-2.  frameHeight  - height of crop frame.
-3.  imageWidth   - width of image.
-4.  imageHeight  - height of image.
-5.  frameX1      - coordinate X1 of left-top crop frame corner.
-6.  frameY1      - coordinate Y2 of left-top crop frame corner.
-7.  frameX2      - coordinate X1 of right-bottom crop frame corner.
-8.  frameY2      - coordinate Y2 of right-bottom crop frame corner.
-9.  link         - link to your image.
-10. jpegQuality  - percentage of jpeg quality.
-11. savePath     - node.js local save path.
-12. fileName     - node.js local file name.
-13. isImageLocal - boolean type (is image from same server or from another server)
-```
-
-### jugi.resizeHandler (function (data, error) {})
-
-*You need to use this function if you work with your server part (not jugi-server)*
-
-Override resize button handler with user function. The handler passes two parameters to user function:
-```
-1. data - object with resize parameters.
-2. error - true when an error occurred.
-```
-Object 'data' contains the following properties:
-```
-1. imageWidth   - width of image.
-2. imageHeight  - height of image.
-3. newWidth     - new width value for image processing.
-4. newHeight    - new height value for image processig.
-5. link         - link to your image.
-6. jpegQuality  - percentage of jpeg quality.
-7. savePath     - node.js local save path.
-8. fileName     - node.js local file name.
-9. isImageLocal - boolean type (is image from same server or from another server)
-```
-
 
 
 ## Server side Jugi API:
@@ -199,10 +146,4 @@ Now images will be saved in c:/user/node/server/public/images.
 
 **Server side:** npm install jugi --save
 
-**Client side:** just connect jugi-client.js & jugi.css to you project, add 2 DIV`s to your HTML:
-```html
-<DIV ID='jugi_menu'></DIV>
-<DIV ID='jugi_area'></DIV>
-```
-
-
+**Client side:** just copy jugi-client.js, jugi-config.js, jugi.css & jugi.html to you project.

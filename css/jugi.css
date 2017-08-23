@@ -1,0 +1,177 @@
+html
+{
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+	width: 100%;
+}
+body
+{
+	background: white;
+	width: 100%;
+	margin: 0 0 0 0;
+}
+.box
+{
+	z-index: 1;
+	height: 17px;
+	border: 1px solid #AAAAAA; 
+	padding: 5px; 
+	background: #EEEEEE;
+	position: relative;
+	overflow: hidden;
+	vertical-align: top;
+	width: 440px;
+	margin-bottom: 5px;
+}
+.box_header
+{
+	margin-bottom: 5px; 
+	font: bold 90% verdana;
+	cursor: pointer; 
+}
+.box_arrow
+{
+	float: right;
+}
+#wrapper
+{
+	position: absolute;
+	left: -470px;
+	top: 39px;
+	padding-right: 5px;
+	margin-left: 5px;
+	background: white;
+	border-bottom: 1px solid #AAAAAA;
+	border-right: 1px solid #AAAAAA;
+	z-index: 999;
+}
+#main_menu
+{
+	border: 1px solid #AAAAAA; 
+	background: #EEEEEE;
+	width: calc(100% - 12px); 
+	font: 90% verdana; 
+	padding: 5px; 
+	cursor: pointer;
+}
+
+/* ======================= JUGI MENU ============================= */
+#jugi_menu
+{
+	padding: 5px;
+	background: white;
+}
+
+
+/** files **/
+.files_text
+{
+	width: 185px; 
+	display: inline-block; 
+	font: bold 90% verdana;
+}
+
+.files_input
+{
+	width: 247px; 
+	margin-bottom: 5px;
+}
+
+/** C & R **/
+.cr_text
+{
+	display: inline-block; 
+	font: bold 90% verdana; 
+	width: 185px;
+}
+.cr_small_input
+{
+	width: 50px; 
+	margin-bottom: 5px;
+}
+.cr_cross
+{
+	font: bold 90% verdana;
+}
+.cr_jpeg_quality
+{
+	width: 50px;
+}
+.cr_button
+{
+	width: 112px; 
+	margin-bottom: 5px;
+}
+.cr_source
+{
+	display: inline-block;
+	width: 98px; 
+	margin-bottom: 5px; 
+	padding-left: 10px;
+}
+
+/** tools **/
+.tools_text
+{
+	white-space: nowrap; 
+	display: inline-block;
+	font: 90% verdana;
+	width: 150px;
+}
+.tools_input
+{
+	width: 130px;
+}
+.tools_button
+{
+	width: 134px; 
+	margin-bottom: 5px;
+}
+.tools_flip_button
+{
+	width: 134px; 
+	margin-bottom: 5px;
+}
+#jugi_status
+{
+	position: fixed;
+	bottom: 0px;
+	z-index: 10;
+	width: calc(100% - 22px);
+	height: 17px;
+	background: #EEEEEE;
+	border: 1px solid #AAAAAA; 
+	margin: 5px;
+	padding: 5px;
+}
+#jugi_area
+{
+	z-index: 0;
+	top: 39px;
+	display: inline-block;
+	margin-left: 5px;
+	border: 1px solid #AAAAAA;
+	position: absolute;
+	max-width: calc(100% - 12px);
+	max-height: calc(100% - 79px);
+	overflow: auto;
+}
+.status_text
+{
+	display: inline-block; 
+	font: bold 90% verdana; 
+}
+.man_text
+{
+	display: inline-block; 
+	font: bold 90% verdana; 
+	width: 135px;
+}
+.logo
+{
+	position: absolute; 
+	opacity: 0.2; 
+	right: 5px; 
+	bottom: 3px; 
+	font: bold 120% serif;
+}

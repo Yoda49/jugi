@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+	<LINK REL="stylesheet" HREF="/css/jugi.css" TYPE="text/css" MEDIA="all"/>
+</HEAD>
+
+<BODY>
+	<DIV ID='jugi_menu'>
+		<DIV ID='main_menu'><B>Menu</B> [click to open menu].</DIV>
+		<DIV ID='wrapper'>
+		
+			<DIV ID='m1' CLASS='box'>
+				<DIV CLASS='box_header' ID='m1_toggle'>
+					File operations:<SPAN ID='m1a' CLASS='box_arrow'>&#9660;</SPAN>
+				</DIV>
+				<HR>
+				<SPAN  CLASS='files_text'>Link to image:</SPAN>
+				<INPUT CLASS='files_input' ID='link' PLACEHOLDER='Enter local or web link'>
+				<BR>
+				<SPAN  CLASS='files_text'>Server save path:</SPAN>
+				<INPUT CLASS='files_input' ID='save_path' PLACEHOLDER='Default path (__dirname + /public/)'>
+				<BR>
+				<SPAN  CLASS='files_text'>Add path / file name:</SPAN>
+				<INPUT CLASS='files_input' ID='file_name'>
+				<BR>
+			</DIV>
+		
+			<DIV ID='m2' CLASS='box'>
+				<DIV CLASS='box_header' ID='m2_toggle'>
+					Crop & resize:<SPAN ID='m2a' CLASS='box_arrow'>&#9660;</SPAN>
+				</DIV>
+				<HR>
+				<SPAN  CLASS='cr_text'>Original size:</SPAN>
+				<INPUT CLASS='cr_small_input' TITLE='Width' TYPE='number' ID='size_x' DISABLED>
+				<SPAN  CLASS='cr_cross'> x </SPAN>
+				<INPUT CLASS='cr_small_input' TITLE='Height' TYPE='number' ID='size_y' DISABLED>&ensp;
+				<INPUT CLASS='cr_source' ID='source' DISABLED><BR>
+				<SPAN  CLASS='cr_text'>New size:</SPAN>
+				<INPUT CLASS='cr_small_input' TITLE='Width' TYPE='number' ID='new_size_x'>
+				<SPAN  CLASS='cr_cross'> x </SPAN>
+				<INPUT CLASS='cr_small_input' TITLE='Height' TYPE='number' ID='new_size_y'>&ensp;
+				<INPUT CLASS='cr_button' TYPE='button' ID='jugi_resize' VALUE='Resize image'><BR>
+				<SPAN  CLASS='cr_text'>Crop window:</SPAN>
+				<INPUT CLASS='cr_small_input' TITLE='Width' MIN='' VALUE='' TYPE='number' ID='frame_size_x'>
+				<SPAN  CLASS='cr_cross'> x </SPAN>
+				<INPUT CLASS='cr_small_input' TITLE='Height' MIN='' VALUE='' TYPE='number' ID='frame_size_y'>&ensp;
+				<INPUT CLASS='cr_button' TYPE='button' ID='jugi_crop' VALUE='Crop image'><BR>
+				<SPAN  CLASS='cr_text'>Jpeg quality:</SPAN>
+				<INPUT CLASS='cr_jpeg_quality' MIN='1' MAX='100' TYPE='number' ID='jpeg_quality' VALUE=''><BR>
+			</DIV>
+		
+			<DIV ID='m3' CLASS='box'>
+				<DIV CLASS='box_header' ID='m3_toggle'>
+					Tools:<SPAN ID='m3a' CLASS='box_arrow'>&#9660;</SPAN>
+				</DIV>
+				<HR>
+				<SPAN  CLASS='tools_text'><B>Flip image</B>: </SPAN>
+				<INPUT CLASS='tools_flip_button' TYPE='button' ID='jugi_flip_h' VALUE='Horizontal'>&ensp;
+				<INPUT CLASS='tools_flip_button' TYPE='button' ID='jugi_flip_v' VALUE='Vertical'><BR>
+			
+				<SPAN  CLASS='tools_text'><B>Rotate image</B>: </SPAN>
+				<INPUT CLASS='tools_input'  TYPE='number' ID='jugi_rotate_value'  TITLE='rotate angle value' MIN='1' MAX='359' PLACEHOLDER='1 .. 359'>&ensp;
+				<INPUT CLASS='tools_button' TYPE='button' ID='jugi_rotate_button' TITLE='rotate image' VALUE='Execute'><BR>
+			
+				<SPAN  CLASS='tools_text'><B>Brightness</B>: </SPAN>
+				<INPUT CLASS='tools_input'  TYPE='number' ID='jugi_brightness_value'  TITLE='brightness value'  MIN='0' MAX='100' PLACEHOLDER='0 .. 100'>&ensp;
+				<INPUT CLASS='tools_button' TYPE='button' ID='jugi_brightness_button' TITLE='change brightness' VALUE='Execute'><BR>
+			
+				<SPAN  CLASS='tools_text'><B>Contrast</B>: </SPAN>
+				<INPUT CLASS='tools_input'  TYPE='number' ID='jugi_contrast_value'  TITLE='contrast value'  MIN='0' MAX='100' PLACEHOLDER='0 .. 100'>&ensp;
+				<INPUT CLASS='tools_button' TYPE='button' ID='jugi_contrast_button' TITLE='change contrast' VALUE='Execute'><BR>
+			
+				<SPAN  CLASS='tools_text'><B>Opacity</B>: </SPAN>
+				<INPUT CLASS='tools_input'  TYPE='number' ID='jugi_opacity_value'  TITLE='opacity value'  MIN='0' MAX='100' PLACEHOLDER='0 .. 100'>&ensp;
+				<INPUT CLASS='tools_button' TYPE='button' ID='jugi_opacity_button' TITLE='change opacity' VALUE='Execute'><BR>
+			
+				<SPAN  CLASS='tools_text'><B>Blur</B>: </SPAN>
+				<INPUT CLASS='tools_input'  TYPE='number' ID='jugi_blur_value'  TITLE='blur value' PLACEHOLDER='0 .. 100'>&ensp;
+				<INPUT CLASS='tools_button' TYPE='button' ID='jugi_blur_button' TITLE='make blur'  VALUE='Execute'><BR>
+			
+				<SPAN  CLASS='tools_text'><B>posterise</B>: </SPAN>
+				<INPUT CLASS='tools_input'  TYPE='number' ID='jugi_posterize_value'  TITLE='posterize value' PLACEHOLDER='0 .. 100'>&ensp;
+				<INPUT CLASS='tools_button' TYPE='button' ID='jugi_posterize_button' TITLE='make posterize'  VALUE='Execute'><BR>
+			
+				<SPAN  CLASS='tools_text'><B>Sepia</B>: </SPAN>
+				<INPUT CLASS='tools_input'  TYPE='number' ID='jugi_sepia_value'  TITLE='sepia value' DISABLED>&ensp;
+				<INPUT CLASS='tools_button' TYPE='button' ID='jugi_sepia_button' TITLE='make sepia'  VALUE='Execute'><BR>
+			
+				<SPAN  CLASS='tools_text'><B>Pixelate</B>: </SPAN>
+				<INPUT CLASS='tools_input'  TYPE='number' ID='jugi_pixelate_value'  TITLE='pixelate value' PLACEHOLDER='0 .. 100'>&ensp;
+				<INPUT CLASS='tools_button' TYPE='button' ID='jugi_pixelate_button' TITLE='pixelate image' VALUE='Execute'><BR>
+			</DIV>
+		
+		</DIV>	
+	</DIV>
+	
+	<DIV ID='jugi_area'>
+		<IMG STYLE='display: block; margin-left: auto; margin-right: auto;' ID='image' SRC=''>
+		<DIV ID='frame0' STYLE='display: none; background: black; opacity: 0.15; position: absolute;'></DIV>
+		<DIV ID='frame1' STYLE='display: none; background: white; opacity: 0.45; cursor: move; position: absolute; border: 2px solid #55CCEE; height: 20px; width: 20px;'></DIV>
+		<DIV ID='frame2' STYLE='display: none; background: white; opacity: 0.45; cursor: move; position: absolute; border: 2px solid #55CCEE; height: 20px; width: 20px;'></DIV>
+		<DIV ID='frame3' STYLE='display: none; background: white; opacity: 0.45; cursor: move; position: absolute; border: 2px solid #55CCEE; height: 20px; width: 20px;'></DIV>
+	</DIV>
+	
+	<DIV ID='jugi_status'>
+		<SPAN CLASS='status_text' ID='statistic_color'>
+			Status:&#8194;
+		</SPAN>
+		
+		<SPAN STYLE='font: bold 90% verdana;' ID='statistic_msg'>
+		</SPAN>
+		
+		<DIV CLASS='logo'>
+			Jugi (c) 2017
+		</DIV>
+	</DIV>
+	
+
+</BODY>
+
+<SCRIPT SRC="/js/jugi-client.js" TYPE="text/javascript"></SCRIPT>
+<SCRIPT SRC="/js/jugi-config.js" TYPE="text/javascript"></SCRIPT>
+</html>
