@@ -13,5 +13,5 @@ var config =
 }	
 
 
-init(jugi_config);
+init(config);
 // init ();
