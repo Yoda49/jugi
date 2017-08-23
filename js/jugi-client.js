@@ -77,7 +77,7 @@ var blockStatus = false;
 // ======================================================
 // INIT FUNCTION
 // ======================================================
-function jugi_init(config) 
+function init(config) 
 {
 	if (config != undefined && typeof(config) == "object")
 	{
