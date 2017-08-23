@@ -10,6 +10,8 @@ Jugi consists of two parts:
 1. Client part for web-browser (jugi-client.js). Written in clear JavaScript.
 2. Server part for node.js (jugi-server).js. Written for use with framework express.js.
 
+Gitgub pages for client-side jugi part with test image: https://yoda49.github.io/jugi/jugi.html?http://cdn.tvc.ru/pictures/tc/841/15.jpg
+
 ![jugi.js](http://isee.by/images/kim.jpg)
 
 ## Client side Jugi API:
